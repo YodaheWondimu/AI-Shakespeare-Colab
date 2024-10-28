@@ -23,23 +23,25 @@ STEP_SIZE = 3
 SEQ_LENGTH is what is used to adjust each sequence of text that is printed at a time. STEP_SIZE means that it will attempt to "step" three characters forward awhen creating a new sequence. It's kind of like chewing your food before swallowing so it's easier to digest - the computer's doing that. (I hope the computer enjoys its meal.)
 
 The following commented-out section was only used for training preparation, so now it's not necessary for the final product. It still helped it get there, though, like a Kindergarten teacher to a student in college. What you'll find is the following:
-# training prep
-# sentences = []
-# next_characters = []
 
-# for i in range(0, len(text) - SEQ_LENGTH, STEP_SIZE):
-#     sentences.append(text[i: i+SEQ_LENGTH])
-#     next_characters.append(text[i+SEQ_LENGTH])
+_training prep_
+sentences = []
+next_characters = []
 
-# x = np.zeros((len(sentences), SEQ_LENGTH, len(characters)), dtype=np.bool_)
-# y = np.zeros((len(sentences), len(characters)), dtype=np.bool_)
-# print(str(y.shape))
+for i in range(0, len(text) - SEQ_LENGTH, STEP_SIZE):
+    sentences.append(text[i: i+SEQ_LENGTH])
+    next_characters.append(text[i+SEQ_LENGTH])
 
-# for i, sentence in enumerate(sentences):
-#     for t, character in enumerate(sentence):
-#         x[i, t, char_to_index[character]] = 1
-#     y[i, char_to_index[next_characters[i]]] = 1
-# training prep
+x = np.zeros((len(sentences), SEQ_LENGTH, len(characters)), dtype=np.bool_)
+y = np.zeros((len(sentences), len(characters)), dtype=np.bool_)
+print(str(y.shape))
+
+for i, sentence in enumerate(sentences):
+    for t, character in enumerate(sentence):
+        x[i, t, char_to_index[character]] = 1
+    y[i, char_to_index[next_characters[i]]] = 1
+_training prep_
+
 What it does is collect multiple characters (yes, characters can make sentences when combined) and records their following characters thereafter. It then can use this to get certain arrays, the input and output arrays, ready for training so that the computer has what it needs to train!
 
 At this point, the program is ready for training, so it does just that and saves everything onto textgenerator.keras for later. That way, we can have ready results and don't need to train every time we run!
@@ -74,4 +76,4 @@ What this does is use everything that the user asked for and runs it through the
 
 So what did we see on that eventful tour (if we saw anything through our tears of joy)? We saw a script that can train a nural network model (a spider web of interlocking neurons and synapses in the computer) to create Shakespearean poetry that looks like the original poetry written by Shakespeare (the man himself!). It has the superpowers of making sequences, sampling temperature for varied randomnes of the texts generated, and asking the user what type of poetry they feel like having. Hopefully, my personal project has inspired you to dig deeper into the world of AI, and if this is true, then congrats! There is a welcoming and insightful field of computer science waiting for you if you want to learn more in your own time. Writing Shakespearean poetry only scratches the surface of what AI can do, so if you ever wonder about how you can get started, there are many tutorials and classes online for you to create your own AI projects one step at a time. Whatever you may do, though, I hope you give it all of your passion and desires to Learn with a capital L.
 
-- Yodahe Wondimu, Programmer
+- Yodahe Wondimu, Computer Scientist
