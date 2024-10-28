@@ -25,6 +25,7 @@ SEQ_LENGTH is what is used to adjust each sequence of text that is printed at a 
 The following commented-out section was only used for training preparation, so now it's not necessary for the final product. It still helped it get there, though, like a Kindergarten teacher to a student in college. What you'll find is the following:
 
 _training prep_
+
 sentences = []
 next_characters = []
 
@@ -40,6 +41,7 @@ for i, sentence in enumerate(sentences):
     for t, character in enumerate(sentence):
         x[i, t, char_to_index[character]] = 1
     y[i, char_to_index[next_characters[i]]] = 1
+    
 _training prep_
 
 What it does is collect multiple characters (yes, characters can make sentences when combined) and records their following characters thereafter. It then can use this to get certain arrays, the input and output arrays, ready for training so that the computer has what it needs to train!
